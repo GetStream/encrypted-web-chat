@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Chat from './components/Chat';
+import Sender from './components/Sender';
+import Recipient from './components/Recipient';
+import KeyDeriver from './components/KeyDeriver';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [sender, setSender] = useState(null);
+  const [recipient, setRecipient] = useState(null);
+  const [derivedKey, setDerivedKey] = useState(null);
+
+
+  if (!sender)
+    return <Sender onSubmit={setSender} />
+  
+  if (!recipient)
+    return <Recipient onSubmit={setRecipient} />
+
+  if (!derivedKey)
+    return <KeyDeriver sender={sender} recipient={recipient} onSubmit={setDerivedKey} />
+  
+  return <Chat sender={sender} recipient={recipient} derivedKey={derivedKey} />
 }
 
 export default App;
