@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import chatClient from '../lib/chatClient';
 
 export default props => {
     const [recipient, setRecipient] = useState("")
+    const [error, setError] = useState("")
 
     const handleClick = () => {
         const logIn = async () => {
             const usersQuery = await chatClient.queryUsers({ id: recipient });
-            const publicKeyJwk = JSON.parse(usersQuery.users[0].publicKeyJwk)
-            props.onSubmit({recipient, publicKeyJwk});
+            console.log(usersQuery);
+            if (usersQuery.users.length > 0) {
+                const publicKeyJwk = JSON.parse(usersQuery.users[0].publicKeyJwk)
+                props.onSubmit({recipient, publicKeyJwk});
+            } else {
+                setError("This user is not registered. Open a new tab and create it? :)")
+            }
         }
 
         logIn();
@@ -20,6 +26,7 @@ export default props => {
             <input value={recipient} onChange={e => setRecipient(e.target.value)} />
             <br /><br />
             <button onClick={handleClick}>Submit</button>
+            <p>{error}</p>
         </div>
     )
 }

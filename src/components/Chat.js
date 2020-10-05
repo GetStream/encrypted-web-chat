@@ -3,7 +3,6 @@ import { Chat, Channel, ChannelHeader, Thread, Window, Message } from 'stream-ch
 import { MessageList, MessageInput, SendButton } from 'stream-chat-react';
 
 import chatClient from '../lib/chatClient';
-import sendMessage from '../lib/encrypt';
 
 import 'stream-chat-react/dist/css/index.css';
 import EncryptedMessage from './EncryptedMessage';
