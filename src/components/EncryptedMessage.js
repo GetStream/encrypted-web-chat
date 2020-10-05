@@ -6,8 +6,6 @@ import decrypt from "../lib/decrypt";
 export default props => {
     const [message, setMessage] = useState(props.message);
 
-    console.log("mais hem")
-
     useEffect(() => {
         const work = async () => {
             setMessage({

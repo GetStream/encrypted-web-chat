@@ -1,20 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import deriveKey from '../lib/deriveKey';
 
 export default props => {
     const {sender, recipient, onSubmit} = props;
+    const [error, setError] = useState("");
 
     useEffect(() => {
       const derive = async () => {
-          console.log(props);
-          const derivedKey = await deriveKey(recipient.publicKeyJwk, sender.keyPair.privateKeyJwk)
-          onSubmit(derivedKey);
+          try {
+            const derivedKey = await deriveKey(recipient.publicKeyJwk, sender.keyPair.privateKeyJwk)
+            onSubmit(derivedKey);
+          } catch(e) {
+              setError(e.message)
+          }
       }
 
       derive()
     }, [sender, recipient])
 
     return (
-        <p>Deriving key...</p>
+        <div>
+            <p>Deriving key...</p>
+            <p>{error}</p>
+        </div>
     )
 }

@@ -1,8 +1,4 @@
 export default async (publicKeyJwk, privateKeyJwk) => {
-    console.log("deriving key")
-
-    console.log({publicKeyJwk, privateKeyJwk})
-
     const publicKey = await window.crypto.subtle.importKey(
         "jwk", 
         {...publicKeyJwk, key_ops: []},

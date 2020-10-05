@@ -18,7 +18,5 @@ export default async callback => {
         keyPair.privateKey
     )
 
-    console.log({publicKeyJwk, privateKeyJwk})
-
     callback({publicKeyJwk, privateKeyJwk})
 }

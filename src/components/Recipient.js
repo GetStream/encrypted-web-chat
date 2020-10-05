@@ -7,13 +7,17 @@ export default props => {
 
     const handleClick = () => {
         const logIn = async () => {
-            const usersQuery = await chatClient.queryUsers({ id: recipient });
-            console.log(usersQuery);
-            if (usersQuery.users.length > 0) {
-                const publicKeyJwk = JSON.parse(usersQuery.users[0].publicKeyJwk)
-                props.onSubmit({recipient, publicKeyJwk});
-            } else {
-                setError("This user is not registered. Open a new tab and create it? :)")
+            try {
+                const usersQuery = await chatClient.queryUsers({ id: recipient });
+
+                if (usersQuery.users.length > 0) {
+                    const publicKeyJwk = JSON.parse(usersQuery.users[0].publicKeyJwk)
+                    props.onSubmit({recipient, publicKeyJwk});
+                } else {
+                    setError("This user is not registered. Open a new tab and create it? :)")
+                }
+            } catch(e) {
+                setError(`Error setting recipient: ${e.message}`)
             }
         }
 
