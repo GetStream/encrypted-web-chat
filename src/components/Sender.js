@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import chatClient from "../lib/chatClient";
+import logIn from "../lib/logIn";
 import generateKeyPair from "../lib/generateKeyPair";
 
 export default (props) => {
@@ -8,35 +8,16 @@ export default (props) => {
   const [error, setError] = useState("");
 
   const handleSubmit = () => {
-    const logIn = async () => {
-      const response = await chatClient.setUser(
-        {
-          id: sender,
-          name: sender,
-          image: `https://getstream.io/random_png/?id=cool-recipe-9&name=${sender}`,
-        },
-        chatClient.devToken(sender)
-      );
-
-      if (
-        response.me?.publicKeyJwk &&
-        response.me.publicKeyJwk != JSON.stringify(keyPair.publicKeyJwk)
-      ) {
-        setError(
-          "This user id already exists with a different key pair. Choose a new user id or paste the correct key pair."
-        );
-        await chatClient.disconnect();
-        return;
+    const work = async () => {
+      try {
+        await logIn(sender, keyPair);
+        props.onSubmit({ sender, keyPair });
+      } catch (e) {
+        setError(`Error logging in: ${e}`);
       }
-
-      await chatClient.upsertUsers([
-        { id: sender, publicKeyJwk: JSON.stringify(keyPair.publicKeyJwk) },
-      ]);
-
-      props.onSubmit({ sender, keyPair });
     };
 
-    logIn();
+    work();
   };
 
   const handleKeyPairInputChange = (e) => {
