@@ -7,19 +7,6 @@ export default (props) => {
   const [sender, setSender] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = () => {
-    const work = async () => {
-      try {
-        await logIn(sender, keyPair);
-        props.onSubmit({ sender, keyPair });
-      } catch (e) {
-        setError(`Error logging in: ${e}`);
-      }
-    };
-
-    work();
-  };
-
   const handleKeyPairInputChange = (e) => {
     try {
       const keyPair = JSON.parse(e.target.value);
@@ -34,14 +21,26 @@ export default (props) => {
     setKeyPair(await generateKeyPair());
   };
 
+  const handleSubmit = () => {
+    const work = async () => {
+      try {
+        await logIn(sender, keyPair);
+        props.onSubmit({ sender, keyPair });
+      } catch (e) {
+        setError(`Error logging in: ${e}`);
+      }
+    };
+
+    work();
+  };
+
   return (
     <div>
       <p>What is your id?</p>
       <input value={sender} onChange={(e) => setSender(e.target.value)} />
       <p>Avoid spaces and special characters.</p>
       <p>
-        Paste your key pair below or{" "}
-        <button onClick={handleGenerateClick}>generate</button> a new one.
+        Paste your key pair below or <button onClick={handleGenerateClick}>generate</button> a new one.
       </p>
       <input
         value={JSON.stringify(keyPair)}
