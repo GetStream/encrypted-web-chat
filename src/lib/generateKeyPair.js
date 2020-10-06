@@ -1,4 +1,4 @@
-export default async callback => {
+export default async () => {
     const keyPair = await window.crypto.subtle.generateKey(
         {
             name: "ECDH",
@@ -18,5 +18,5 @@ export default async callback => {
         keyPair.privateKey
     )
 
-    callback({publicKeyJwk, privateKeyJwk})
+    return {publicKeyJwk, privateKeyJwk}
 }
