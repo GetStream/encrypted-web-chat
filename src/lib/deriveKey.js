@@ -1,7 +1,7 @@
 export default async (publicKeyJwk, privateKeyJwk) => {
     const publicKey = await window.crypto.subtle.importKey(
         "jwk", 
-        {...publicKeyJwk, key_ops: []},
+        publicKeyJwk,
         {
             name: "ECDH",
             namedCurve: "P-256",
