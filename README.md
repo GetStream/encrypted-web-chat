@@ -4,7 +4,7 @@
 
 ## 📚 Tutorial
 
-This repository contains the completed React project following the [End-to-End Encrypt your Chat with the Web Crypto API](https://getstream.io/blog/web-crypto-api-chat/) tutorial. You should read it before trying to run this project as it contains it may contain useful information not present in this README.
+This repository contains the completed React project following the [End-to-End Encrypted Chat with the Web Crypto API](https://getstream.io/blog/web-crypto-api-chat/) tutorial. You should read it before trying to run this project as it contains it may contain useful information not present in this README.
 
 ## ⚙️ Setup
 
