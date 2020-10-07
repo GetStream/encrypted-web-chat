@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logIn from "../lib/logIn";
+import setUser from "../lib/setUser";
 import generateKeyPair from "../lib/generateKeyPair";
 
 export default (props) => {
@@ -24,7 +24,7 @@ export default (props) => {
   const handleSubmit = () => {
     const work = async () => {
       try {
-        await logIn(sender, keyPair);
+        await setUser(sender, keyPair);
         props.onSubmit({ sender, keyPair });
       } catch (e) {
         setError(`Error logging in: ${e}`);

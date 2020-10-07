@@ -1,3 +1,3 @@
 import { StreamChat } from "stream-chat";
 
-export default new StreamChat("dge73daydbcp");
+export default new StreamChat("[api_key]");
