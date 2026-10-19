@@ -1,3 +1,5 @@
+> **This repository is archived and no longer maintained.** For a current alternative, see [react-end-to-end-encrypted-chat](https://github.com/GetStream/react-end-to-end-encrypted-chat).
+
 # 🔐💬 Encrypted Web Chat  [![](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FGetStream%2Fencrypted-web-chat)](https://twitter.com/intent/tweet?text=Want%20to%20secure%20your%20web%20chat%20app%20with%20the%20Web%20Crypto%20API%3F%20Learn%20how%3A&url=https%3A%2F%2Fgithub.com%2FGetStream%2Fencrypted-web-chat)
 
 <img align="right" src="https://i.imgur.com/lqSXw3K.gif" width="50%" />
